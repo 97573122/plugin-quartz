@@ -1,0 +1,48 @@
+server:
+  port: 8080
+  context-path: /
+
+#log-impl:配置org.apache.ibatis.logging.stdout.StdOutImpl打印sql
+#配置org.apache.ibatis.logging.log4j.Log4jImpl不打印sql
+mybatis:
+  mapper-locations: classpath*:com/yt/**/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
+  
+spring:
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+  aop:
+    proxy-target-class: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.210.71:3306/yt_xmessage?characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useUnicode=true&allowMultiQueries=true&useSSL=false
+    username: root
+    password: 123456
+    driverClassName: com.mysql.jdbc.Driver
+    initialSize: 5
+    minIdle: 10
+    maxActive: 50
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,slf4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+fwAuthInterceptor:
+   excludePathPatterns: /plugin/quartz/*
+
+#计划任务默认配置
+quartz:
+  defaultJobcron: 0 0 0 1 * ?
+  defaultGroupName: taskGroup
+
+

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.plugin.quartz.mapper.QrtzExeLogMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.plugin.quartz.entity.QrtzExeLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="jobGroup" property="jobGroup" jdbcType="VARCHAR" />
+    <result column="jobName" property="jobName" jdbcType="VARCHAR" />
+    <result column="exeTime" property="exeTime" jdbcType="TIMESTAMP" />
+    <result column="exeIp" property="exeIp" jdbcType="VARCHAR" />
+    <result column="takeTimes" property="takeTimes" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, jobGroup, jobName, exeTime, exeIp, takeTimes, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qrtz_exe_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qrtz_exe_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectObjectListByWhere" resultMap="BaseResultMap" parameterType="com.yt.plugin.quartz.entity.QrtzExeLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from qrtz_exe_log
+    <where >
+      <if test="jobGroup != null" >
+        and jobGroup = #{jobGroup,jdbcType=VARCHAR}
+      </if>
+      <if test="jobName != null" >
+        and jobName = #{jobName,jdbcType=VARCHAR}
+      </if>
+      <if test="exeTime != null" >
+        and exeTime = #{exeTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="exeIp != null" >
+        and exeIp = #{exeIp,jdbcType=VARCHAR}
+      </if>
+      <if test="takeTimes != null" >
+        and takeTimes = #{takeTimes,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null" >
+        and remark = #{remark,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <select id="selectCountByWhere" resultType="java.lang.Integer" parameterType="com.yt.plugin.quartz.entity.QrtzExeLog" >
+    select 
+     count(1) 
+    from qrtz_exe_log
+    <where >
+      <if test="jobGroup != null" >
+        and jobGroup = #{jobGroup,jdbcType=VARCHAR}
+      </if>
+      <if test="jobName != null" >
+        and jobName = #{jobName,jdbcType=VARCHAR}
+      </if>
+      <if test="exeTime != null" >
+        and exeTime = #{exeTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="exeIp != null" >
+        and exeIp = #{exeIp,jdbcType=VARCHAR}
+      </if>
+      <if test="takeTimes != null" >
+        and takeTimes = #{takeTimes,jdbcType=INTEGER}
+      </if>
+      <if test="remark != null" >
+        and remark = #{remark,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <insert id="insert" parameterType="com.yt.plugin.quartz.entity.QrtzExeLog" >
+    insert into qrtz_exe_log (id, jobGroup, jobName, 
+      exeTime, exeIp, takeTimes, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{jobGroup,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR}, 
+      #{exeTime,jdbcType=TIMESTAMP}, #{exeIp,jdbcType=VARCHAR}, #{takeTimes,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yt.plugin.quartz.entity.QrtzExeLog" >
+    insert into qrtz_exe_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jobGroup != null" >
+        jobGroup,
+      </if>
+      <if test="jobName != null" >
+        jobName,
+      </if>
+      <if test="exeTime != null" >
+        exeTime,
+      </if>
+      <if test="exeIp != null" >
+        exeIp,
+      </if>
+      <if test="takeTimes != null" >
+        takeTimes,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jobGroup != null" >
+        #{jobGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="exeTime != null" >
+        #{exeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exeIp != null" >
+        #{exeIp,jdbcType=VARCHAR},
+      </if>
+      <if test="takeTimes != null" >
+        #{takeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yt.plugin.quartz.entity.QrtzExeLog" >
+    update qrtz_exe_log
+    <set >
+      <if test="jobGroup != null" >
+        jobGroup = #{jobGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null" >
+        jobName = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="exeTime != null" >
+        exeTime = #{exeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exeIp != null" >
+        exeIp = #{exeIp,jdbcType=VARCHAR},
+      </if>
+      <if test="takeTimes != null" >
+        takeTimes = #{takeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yt.plugin.quartz.entity.QrtzExeLog" >
+    update qrtz_exe_log
+    set jobGroup = #{jobGroup,jdbcType=VARCHAR},
+      jobName = #{jobName,jdbcType=VARCHAR},
+      exeTime = #{exeTime,jdbcType=TIMESTAMP},
+      exeIp = #{exeIp,jdbcType=VARCHAR},
+      takeTimes = #{takeTimes,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="findByPage" resultMap="BaseResultMap" parameterType="com.yt.plugin.quartz.entity.QrtzExeLog" >
+        select
+        <include refid="Base_Column_List" />
+        from qrtz_exe_log
+        <where >
+            <if test="jobGroup != null" >
+                and jobGroup = #{jobGroup,jdbcType=VARCHAR}
+            </if>
+            <if test="jobName != null" >
+                and jobName = #{jobName,jdbcType=VARCHAR}
+            </if>
+            <if test="exeTime != null" >
+                and exeTime = #{exeTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="exeIp != null" >
+                and exeIp = #{exeIp,jdbcType=VARCHAR}
+            </if>
+            <if test="takeTimes != null" >
+                and takeTimes = #{takeTimes,jdbcType=INTEGER}
+            </if>
+            <if test="remark != null" >
+                and remark = #{remark,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by exeTime desc
+    </select>
+</mapper>
